@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Exibir logo na barra lateral
-st.sidebar.image("image.png", width=9)
+st.sidebar.image("image.png", width=90)
 
 # Menu de navegação
 opcao = st.sidebar.radio("Escolha uma seção:", [
@@ -315,6 +315,7 @@ elif opcao == "Regras de negócio e impacto estimado":
     - A análise reforça a importância de aplicar **regras escalonadas** conforme a quantidade de TAGs e **reforçar mecanismos adicionais** para transações sem TAGs (como biometria, MFA e monitoramento comportamental).
 
     """)
+
 
 
 
