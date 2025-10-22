@@ -1,0 +1,6 @@
+streamlit
+plotly
+pandas
+numpy
+# outras bibliotecas que você estiver usando
+``
