@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # Exibir logo na barra lateral
-st.sidebar.image("C:/Users/Z550647/OneDrive - Claro SA/Documentos/dadoscbk/image.png", width=90)
+st.sidebar.image("assets/image.png", width=9)
 
 # Menu de navegação
 opcao = st.sidebar.radio("Escolha uma seção:", [
@@ -18,7 +18,7 @@ opcao = st.sidebar.radio("Escolha uma seção:", [
 st.title("Case de Detecção de Comportamento de Risco em Transações com Chargeback")
 
 # Variáveis globais para a aba "Regras de negócio e impacto estimado"
-df_modelo = pd.read_csv("C:/Users/Z550647/OneDrive - Claro SA/Documentos/dadoscbk/planilha_2_com_previsao_cbk.csv")
+df_modelo = pd.read_csv("planilha_2_com_previsao_cbk.csv")
 cbk_predicted = df_modelo[df_modelo['CBK_Previsto'] == 1].copy()
 
 risk_tags = ['Risco_Horario_Alto', 'Risco_Valor_Alto', 'Risco_Cartao_Recorrente', 'Risco_BIN_Alto', 'Risco_Combinado']
@@ -36,7 +36,7 @@ if opcao == "Objetivo da análise":
     )
 
 elif opcao == "Análise do comportamento transacional":
-    df = pd.read_csv("C:/Users/Z550647/OneDrive - Claro SA/Documentos/dadoscbk/dados_tratados_com_tags_ajustado.csv")
+    df = pd.read_csv("dados_tratados_com_tags_ajustado.csv")
     df['DataHora'] = pd.to_datetime(df['DataHora'])
     df['DiaFormatada'] = df['DataHora'].dt.strftime('%d/%m')
     df['Hora'] = df['DataHora'].dt.hour
@@ -107,7 +107,7 @@ elif opcao == "Análise do comportamento transacional":
 elif opcao == "Perfil das transações com chargeback":
     st.write("Aqui foi explorado as características das transações que resultaram em chargeback, buscando entender os fatores que contribuem para esse tipo de ocorrência.")
 
-    cbk_df = pd.read_csv("C:/Users/Z550647/OneDrive - Claro SA/Documentos/dadoscbk/dados_tratados_com_tags_cbk.csv")
+    cbk_df = pd.read_csv("dados_tratados_com_tags_cbk.csv")
     cbk_df['DataHora'] = pd.to_datetime(cbk_df['DataHora'])
     cbk_df['DiaFormatada'] = cbk_df['DataHora'].dt.strftime('%d/%m')
     cbk_df['CBK'] = cbk_df['CBK'].astype(str).str.strip().str.lower()
@@ -205,7 +205,7 @@ elif opcao == "Modelo preditivo e resultados":
     })
 
     st.subheader("Comparativo visual de desempenho")
-    st.image("C:/Users/Z550647/OneDrive - Claro SA/Documentos/dadoscbk/comparativo_modelos_recall.png", caption="Recall por modelo antes e depois do balanceamento")
+    st.image("comparativo_modelos_recall.png", caption="Recall por modelo antes e depois do balanceamento")
 
     # Informações gerais do modelo preditivo
     st.subheader("Resumo das Previsões do Modelo")
@@ -313,4 +313,5 @@ elif opcao == "Regras de negócio e impacto estimado":
     - Transações com **1 TAG** representam apenas **2,36%**, sugerindo que regras leves podem ser suficientes.
     - Transações com **2 ou mais TAGs** somam cerca de **13%**, sendo casos prioritários para **bloqueio ou encaminhamento à equipe de prevenção**.
     - A análise reforça a importância de aplicar **regras escalonadas** conforme a quantidade de TAGs e **reforçar mecanismos adicionais** para transações sem TAGs (como biometria, MFA e monitoramento comportamental).
+
     """)
